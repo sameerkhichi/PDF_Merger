@@ -4,12 +4,21 @@ import os
 #creating a instance of the pdfwriter object
 merger = PdfWriter()
 
-#getting the current path
+#storing the current path
+original_path = os.getcwd()
+
+#changing directory to the folder with the pdf files
+os.chdir('files_to_merge')
+
+#storing the new directory
 current_path = os.getcwd()
 
 #for each pdf in the folder of files, append it to the merger
-for file in os.listdir("current_path/files_to_merge"):
+for file in os.listdir(current_path):
     merger.append(file)
+
+#switching the working path back to the original one
+os.chdir(original_path)
 
 #writing the output to a separate pdf file
 #note that the wb type will create a file if it doesn't already exist
