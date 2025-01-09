@@ -1,29 +1,18 @@
 from PyPDF2 import PdfWriter
+import os
 
 #creating a instance of the pdfwriter object
 merger = PdfWriter()
 
-#array to hold the files
-files = []
+#getting the current path
+current_path = os.getcwd()
 
-#gets the file name and path from the user
-while True:
-    print("Enter the name of the file with its path enter 'done' to exit")
-    filename = input("Name: ")
+#for each pdf in the folder of files, append it to the merger
+for file in os.listdir("current_path/files_to_merge"):
+    merger.append(file)
 
-    if (filename == "done"):
-        break
-    
-    else:
-        files.append(filename)
-
-
-#for each pdf in the array of files, append it to the merger
-for pdf in files:
-    merger.append(pdf)
-
-#writing the output to a seperate pdf file
-#note that the wb type will create a file if it doesnt already exist
+#writing the output to a separate pdf file
+#note that the wb type will create a file if it doesn't already exist
 output_pdf = open("merged_pdf.pdf", "wb")
 merger.write(output_pdf)
 
