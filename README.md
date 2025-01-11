@@ -20,9 +20,10 @@ Use these steps to download and install the project locally:
    pip install -r requirements.txt
    ```
    
-3. **Run the Application**:
+3. **Creating the merging folder**:
    ```bash
-   Add the PDF files that you wish to merge into the "files_to_merge" folder, note that it will merge in the order of the files in the folder.
+   Add the PDF files that you wish to merge into a folder named "files_to_merge",
+   note that it will merge in the order of the files in the folder.
    ```
    
 4. **Run the Application**:
