@@ -1,12 +1,16 @@
 #this merger uses tkinter to implement a GUi
 import tkinter as tk
 from tkinter import filedialog, messagebox
+import ctypes
 from PyPDF2 import PdfWriter
+
+#adjusting the quality of the window for higher resolution displays
+ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
 #making the main window
 root = tk.Tk()
 root.title("PDF Merger")
-root.geometry('800x600')
+root.geometry('840x720')
 
 #This is an array to hold the selected files
 files_to_merge = []
