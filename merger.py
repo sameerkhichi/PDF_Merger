@@ -1,6 +1,6 @@
 #this merger uses tkinter to implement a GUi
 import tkinter as tk
-from tkinter import filedialog, messagebox
+from tkinter import filedialog, messagebox, ttk #ttk is for the progress bar
 import ctypes
 from PyPDF2 import PdfWriter
 
@@ -18,6 +18,12 @@ files_to_merge = []
 #creates a file box to display the selected files
 file_list = tk.Listbox(root, width=50, height=10)
 file_list.pack(pady=10)
+
+#this is for the progress bar, initially set to 0%
+progress_label = tk.Label(root, text="Progress:")
+progress_label.pack(pady=10)
+progress = ttk.Progressbar(root, orient="horizontal", length=400, mode="determinate", maximum=100)
+progress.pack(pady=10)
 
 def clear_file_list():
 
@@ -72,9 +78,19 @@ def merge_pdfs():
     #using logic from command line merger
     merger = PdfWriter()
 
-    for file in files_to_merge:
+    #setting the progress bar to 0 and updating it
+    progress["value"] = 0
+    root.update()
+
+    for i, file in enumerate(files_to_merge):
         merger.append(file)
-    
+
+        #update the progress bar with the value of the programs progress
+        progress["value"] = (i+1) / len(files_to_merge) * 100
+
+        #refresh the progress bar
+        root.update_idletasks()
+
     #create a file using wb and open function as a simple name
     output_pdf = open(merged_pdf_location, "wb")
     #write to the merger with the contents of the file
