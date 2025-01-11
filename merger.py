@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk #ttk is for the progress bar
 from tkinterdnd2 import TkinterDnD, DND_FILES #to support drag and dropping files
 import ctypes
+import os
 from PyPDF2 import PdfWriter
 
 #adjusting the quality of the window for higher resolution displays
@@ -40,7 +41,8 @@ def update_file_list():
 
     #inserts each file selected
     for file in files_to_merge:
-        file_list.insert(tk.END, file)
+        file_name = os.path.basename(file)
+        file_list.insert(tk.END, file_name)
 
 def select_files():
     
