@@ -15,6 +15,21 @@ files_to_merge = []
 file_list = tk.Listbox(root, width=50, height=10)
 file_list.pack(pady=10)
 
+def clear_file_list():
+
+    #clears the box for the list
+    file_list.delete(0, tk.END)
+
+
+#this is a function to display the user selected files
+def update_file_list():
+
+    #clearing the list before adding all the files back to it
+    clear_file_list()
+
+    #inserts each file selected
+    for file in files_to_merge:
+        file_list.insert(tk.END, file)
 
 def select_files():
     
@@ -23,23 +38,13 @@ def select_files():
     files = filedialog.askopenfilenames(title="Select PDF Files", filetypes=[("PDF files", "*.pdf")])
 
     if files:
-        files_to_merge = list(files)
+        for file in files:
+            #Avoid duplicate files and append to the list with the new file
+            if file not in files_to_merge:
+                files_to_merge.append(file)
+
+        #making sure the box with the pdfs stay updated
         update_file_list()
-    
-
-#this is a function to display the user selected files
-def update_file_list():
-
-    #inserts each file selected
-    for file in files_to_merge:
-        file_list.insert(tk.END, file)
-
-
-def clear_file_list():
-
-    #clears the box for the list
-    file_list.delete(0, tk.END)
-
 
 def merge_pdfs():
 
@@ -67,10 +72,11 @@ def merge_pdfs():
         merger.append(file)
     
     #create a file using wb and open function as a simple name
-    with open(merged_pdf_location, "wb") as output_pdf:
-        #write to the merger with the contents of the file
-        merger.write(output_pdf)
+    output_pdf = open(merged_pdf_location, "wb")
+    #write to the merger with the contents of the file
+    merger.write(output_pdf)
     merger.close()
+    output_pdf.close()
 
     #success message
     messagebox.showinfo("Saved", f"PDFs merged and saved to:\n{merged_pdf_location}")
