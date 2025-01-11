@@ -28,5 +28,5 @@ Use these steps to download and install the project locally:
    
 4. **Run the Application**:
    ```bash
-   python merger.py
+   python mergerCL.py
    ```
