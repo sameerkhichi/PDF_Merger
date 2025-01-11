@@ -1,6 +1,7 @@
 #this merger uses tkinter to implement a GUi
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk #ttk is for the progress bar
+from tkinterdnd2 import TkinterDnD, DND_FILES #to support drag and dropping files
 import ctypes
 from PyPDF2 import PdfWriter
 
@@ -8,7 +9,7 @@ from PyPDF2 import PdfWriter
 ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
 #making the main window
-root = tk.Tk()
+root = TkinterDnD.Tk()
 root.title("PDF Merger")
 root.geometry('840x720')
 
@@ -100,6 +101,22 @@ def merge_pdfs():
 
     #success message
     messagebox.showinfo("Saved", f"PDFs merged and saved to:\n{merged_pdf_location}")
+
+
+#Handle drag and drop files
+def on_drop(event):
+    files = event.data.split()
+    for file in files:
+        #this is to avoid duplicate files
+        if file not in files_to_merge:
+            files_to_merge.append(file)
+
+    #updating the box with the pdf's after each call
+    update_file_list()
+
+#binding the event of dragging and dropping to the window
+root.drop_target_register(DND_FILES)
+root.dnd_bind('<<Drop>>', on_drop)
 
 
 #this is making the button to select the files
