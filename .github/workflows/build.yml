@@ -18,20 +18,24 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  
+          python-version: '3.x'
 
       # Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install PyInstaller tkinterdnd2
+          pip install PyInstaller
+
+      # Copy dependencies to the correct location
+      - name: Copy dependencies
+        run: |
+          mkdir -p ${{ github.workspace }}/tkinterdnd2
+          cp -r dependencies/tkinterdnd2 ${{ github.workspace }}/tkinterdnd2
 
       # Build the .exe using PyInstaller
       - name: Build the .exe
         run: |
-          # Check if tkinterdnd2 is installed properly
-          pip show tkinterdnd2
-          pyinstaller --onefile --add-data "C:/hostedtoolcache/windows/Python/3.13.1/x64/Lib/site-packages/tkinterdnd2/tkdnd;tkinterdnd2/tkdnd" merger.py
+          pyinstaller --onefile --add-data "tkinterdnd2;tkinterdnd2" merger.py
 
       # Upload the build artifact
       - name: Upload build artifact
