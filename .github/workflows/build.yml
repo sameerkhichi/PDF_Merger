@@ -1,0 +1,35 @@
+name: Build PDF Merger Executable
+
+on:
+  push:
+    branches:
+      - main  
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.13.1  
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Build Executable
+      run: |
+        pyinstaller --onefile --add-data "C:\\Users\\runneradmin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tkinterdnd2\\tkdnd2.9;tkdnd2.9" merger.py
+
+    - name: Upload Executable
+      uses: actions/upload-artifact@v3
+      with:
+        name: PDF-Merger-Executable
+        path: dist/merger.exe
