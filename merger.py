@@ -86,6 +86,8 @@ def merge_pdfs():
     root.update()
 
     for i, file in enumerate(files_to_merge):
+        #converting the relative path to an absolute one
+        file = os.path.abspath(file)
         merger.append(file)
 
         #update the progress bar with the value of the programs progress
@@ -109,6 +111,11 @@ def merge_pdfs():
 def on_drop(event):
     files = event.data.split()
     for file in files:
+
+        #cleaning file path
+        file = file.strip()
+        file = file.replace("file:///", "")
+
         #this is to avoid duplicate files
         if file not in files_to_merge:
             files_to_merge.append(file)

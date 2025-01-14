@@ -11,6 +11,8 @@ To download the application visit: https://github.com/sameerkhichi/PDF_Merger/re
 
 Note that any warning you may receive is due to the lack of licensing which was not purchased.
 
+Drag and Drop functionality coming soon!
+
 
 ## Project Installation
 
@@ -32,7 +34,7 @@ Use these steps to download and install the project locally:
    python merger.py
    ```
 
-   You can select files manually or you can drag and drop them into the window, then click merge and save the file where you prefer.
+   You can select files then click merge and save the file where you prefer.
 
 Alternatively, if you would rather not interact with GUI and use the terminal, after installing the program and its requirements follow the steps below: 
    
