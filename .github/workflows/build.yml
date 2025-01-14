@@ -40,7 +40,7 @@ jobs:
       # Build the .exe using PyInstaller
       - name: Build the .exe
         run: |
-          pyinstaller --debug=all --hidden-import=tkinterdnd2 --add-data "tkinterdnd2/*;tkinterdnd2" merger.py
+          pyinstaller --onefile --debug=all --hidden-import=tkinterdnd2 --add-data "tkinterdnd2/*;tkinterdnd2" merger.py
 
       # Upload the build artifact
       - name: Upload build artifact
