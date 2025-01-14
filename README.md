@@ -7,8 +7,7 @@ This is a PDF merger that will merge the PDFs that you give to the program. No s
 
 ## Application Installation
 
-To download the application to use
-visit: https://github.com/sameerkhichi/PDF_Merger/releases/download/v1.0.14/merger.exe
+To download the application visit: https://github.com/sameerkhichi/PDF_Merger/releases/download/v1.0.14/merger.exe
 
 Note that any warning you may receive is due to the lack of licensing which was not purchased.
 
