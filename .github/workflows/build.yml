@@ -26,7 +26,7 @@ jobs:
 
     - name: Build Executable
       run: |
-        pyinstaller --onefile --add-data "C:\\Users\\runneradmin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tkinterdnd2\\tkdnd2.9;tkdnd2.9" merger.py
+        pyinstaller --onefile --add-data "C:\Users\samee\AppData\Local\Programs\Python\Python313\Lib\site-packages\tkinterdnd2\tkdnd;tkinterdnd2/tkdnd"" merger.py
 
     - name: Upload Executable
       uses: actions/upload-artifact@v3
