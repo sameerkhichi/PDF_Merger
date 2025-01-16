@@ -115,6 +115,9 @@ def on_drop(event):
         #cleaning file path
         file = file.strip()
         file = file.replace("file:///", "")
+        
+        #this is a fix for the path when using the drag and drop functionality
+        file = event.data.replace("{","").replace("}","")
 
         #this is to avoid duplicate files
         if file not in files_to_merge:
